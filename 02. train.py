@@ -36,6 +36,12 @@ if __name__ == '__main__':
 
     # x_dataset, y_dataset : (samples, DAYS_PERIOD, 1), (samples, 2)
     x = x_dataset.reshape((-1, DAYS_PERIOD, 1))
+
+    """
+    여기 y 데이터는 종목코드와 1년 샘플링 시작 년월 인덱스가 넘어오므로 학습용 y가 아니다
+    Then set γ = 0.1 and update CAE’s weights, cluster centers and target distribution P as follows.
+    그래서 논문에서처럼 별도로 y를 gamma를 0으로 하고 학습된 target distribution을 ground truth soft label로 사용해야 함!!
+    """
     y = y_dataset.reshape((-1, 2))
 
     # prepare the DCEC model
@@ -50,6 +56,9 @@ if __name__ == '__main__':
              save_dir=args.save_dir,
              cae_weights=args.cae_weights)
     y_pred = dcec.y_pred
+
+
+
     # print('acc = %.4f, nmi = %.4f, ari = %.4f' % (metrics.acc(y, y_pred), metrics.nmi(y, y_pred), metrics.ari(y, y_pred)))
 
 
