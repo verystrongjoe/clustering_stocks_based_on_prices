@@ -1,0 +1,10 @@
+START_DATE = '2001-01-01'
+END_DATE = '2020-12-24'
+
+LENGTH = 4940  # days between END_DATE and START_DATE
+N_STOCKS = 480 + 273  # 733
+CHANNELS = 7  # Symbol, Open, High, Low, Close, Volume, Change
+TIME_WINDOW = 12
+DAYS_PERIOD = 240
+
+EPOCHS = 400
